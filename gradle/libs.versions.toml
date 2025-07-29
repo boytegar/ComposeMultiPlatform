@@ -1,0 +1,66 @@
+[versions]
+agp = "8.11.1"
+androidx-activityCompose = "1.10.1"
+androidx-ui-tooling = "1.8.3"
+compose-plugin = "1.8.2"
+kamel = "0.9.4"
+koin = "4.1.0"
+koin-annotations = "2.1.0"
+kotlin = "2.2.0"
+ktor = "3.2.1"
+navigationCompose = "2.8.0-alpha13"
+ksp = "2.2.0-2.0.2"
+ktorfit = "2.6.1"
+kotlinStdlib = "2.2.0"
+kotlinTest = "2.2.0"
+runner = "1.5.2"
+core = "1.6.1"
+junit = "1.1.5"
+voyager = "1.0.1"
+room = "2.7.2"
+sqlite = "2.5.2"
+[libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-ui-tooling" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-ui-tooling" }
+kamel = { module = "media.kamel:kamel-image", version.ref = "kamel" }
+
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
+
+navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager"}
+navigator-screen-model = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager"}
+navigator-transition = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager"}
+navigator-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager"}
+
+room-runtime = {module = "androidx.room:room-runtime", version.ref = "room"}
+room-compiler = {module = "androidx.room:room-compiler", version.ref = "room"}
+sqlite-bundled = {module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite"}
+
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+koin-annotations = {module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations"}
+koin-ksp-compiler = {module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations"}
+ktorfit-main = {module = "de.jensklingenberg.ktorfit:ktorfit-lib", version.ref = "ktorfit"}
+ktorfit-compiler = { module = "de.jensklingenberg.ktorfit:ktorfit-ksp", version.ref = "ktorfit" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlinTest" }
+androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinComposeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktorfit = {id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit"}
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
