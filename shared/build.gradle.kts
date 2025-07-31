@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.kotlinComposeCompiler)
 }
 
 kotlin {
@@ -59,6 +61,11 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.ktor.serialization.kotlinx.json)
                 // Add KMP dependencies here

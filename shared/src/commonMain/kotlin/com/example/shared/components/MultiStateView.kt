@@ -1,9 +1,9 @@
-package org.example.project.presentation.component
+package com.example.shared.components
+
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
@@ -56,6 +56,7 @@ fun <T : Any> MultiStateView(
         }
     }
 }
+
 
 @Composable
 fun DefaultLoadingLayout() {

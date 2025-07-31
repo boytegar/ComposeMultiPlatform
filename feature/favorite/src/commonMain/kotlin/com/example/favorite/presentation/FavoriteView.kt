@@ -1,4 +1,4 @@
-package org.example.project.presentation
+package com.example.favorite.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,6 +20,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.ArrowCircleLeft
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
@@ -38,53 +41,40 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.example.favorite.presentation.FavoriteView
-import com.example.favorite.presentation.FavoriteViewModel
+import com.example.favorite.data.local.model.DataEntity
 import com.example.shared.components.MultiStateView
-import io.kamel.image.KamelImage
-import io.kamel.image.asyncPainterResource
-import org.example.project.data.network.DataDto
-import org.example.project.data.network.toDataEntity
 import org.koin.compose.viewmodel.koinViewModel
 
-
-class HomeView: Screen {
-
+class FavoriteView: Screen {
     @Composable
     override fun Content() {
-        val viewModel = koinViewModel<DataViewModel>()
-        val favViewModel = koinViewModel<FavoriteViewModel>()
-        val scrollState = rememberScrollState()
         val navigation = LocalNavigator.currentOrThrow
         val modifier = Modifier
+        val favViewModel = koinViewModel<FavoriteViewModel>()
+        val scrollState = rememberScrollState()
         Scaffold(
             topBar = {
-                Row(modifier = modifier.height(60.dp).background(color = Color.LightGray.copy(0.5f)).padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Text(modifier= modifier.weight(0.8f), text = "HOME", style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold))
+                Row(modifier = modifier.height(60.dp).fillMaxWidth().background(color = Color.LightGray.copy(0.5f)).padding(8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start) {
                     IconButton(
-                        onClick = {
-                            navigation.push(FavoriteView())
-                        },
+                        onClick = { navigation?.pop() },
                         enabled = true,
-                        modifier = modifier.size(48.dp).weight(0.2f)
+                        modifier = modifier.size(48.dp)
                     ) {
 
-                    Icon(
-                        imageVector = Icons.Filled.Favorite,
-                        contentDescription = "Favorite"
-                    )
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBackIosNew,
+                            contentDescription = "Favorite"
+                        )
                     }
                 }
             }
         ) {
-            Box(
-                modifier = modifier
-                    .fillMaxSize().padding(8.dp)
-            ){
+            Box( modifier = modifier
+                .fillMaxSize().padding(8.dp)){
                 MultiStateView(
                     modifier = modifier.fillMaxSize(),
-                    state = viewModel.state,
-                ) { it ->
+                    state = favViewModel.stateListData,
+                ){ it->
                     Column(
                         modifier = modifier
                             .fillMaxSize()
@@ -114,58 +104,38 @@ class HomeView: Screen {
                 }
             }
         }
-
     }
 
-}
-
-
-@Composable
-private fun ObjectFrames(
-    obj: DataDto,
-    favViewModel: FavoriteViewModel,
-    modifier: Modifier = Modifier,
-) {
-    Column(
+    @Composable
+    private fun ObjectFrames(
+        obj: DataEntity,
+        favoriteViewModel: FavoriteViewModel,
+        modifier: Modifier = Modifier,
     ) {
-        KamelImage(
-            resource = asyncPainterResource(data = obj.primaryImageSmall),
-            contentDescription = obj.title,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(1f)
-                .background(Color.LightGray),
-        )
+        Column(
+        ) {
+            Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
 
-        Spacer(modifier.height(10.dp))
-        Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            var isFavorited by remember { mutableStateOf(false) }
-            Text(modifier = modifier.weight(0.85f), text = obj.title, style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold))
-            IconButton(
-                onClick = {
-                    isFavorited = !isFavorited
-                    favViewModel.insertToFav(obj.toDataEntity())
-                          },
-                enabled = true,
-                modifier = modifier.size(48.dp).weight(0.15f)
-            ) {
-                if (isFavorited) {
-                    Icon(
-                        imageVector = Icons.Filled.Favorite,
-                        contentDescription = "Favorite"
-                    )
-                } else {
+                Text(modifier = modifier.weight(0.85f), text = obj.title, style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold))
+                IconButton(
+                    onClick = {
+                        favoriteViewModel.deleteFromFav(obj)
+                    },
+                    enabled = true,
+                    modifier = modifier.size(48.dp).weight(0.15f)
+                ) {
 
-                    Icon(
-                        imageVector = Icons.Filled.FavoriteBorder,
-                        contentDescription = "UnFavorite"
-                    )
+
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = "UnFavorite"
+                )
+
                 }
             }
-        }
 
-        Text(obj.artistDisplayName, style = MaterialTheme.typography.body2)
-        Text(obj.objectDate, style = MaterialTheme.typography.caption)
+            Text(obj.artistDisplayName, style = MaterialTheme.typography.body2)
+            Text(obj.objectDate, style = MaterialTheme.typography.caption)
+        }
     }
 }

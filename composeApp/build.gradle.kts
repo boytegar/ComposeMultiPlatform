@@ -67,6 +67,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
+            implementation(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -101,13 +102,13 @@ kotlin {
 }
 
 dependencies {
-    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
+//    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
     add("kspAndroid", libs.koin.ksp.compiler)
     add("kspIosX64", libs.koin.ksp.compiler)
     add("kspIosArm64", libs.koin.ksp.compiler)
     add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
 
-    add("kspCommonMainMetadata", libs.ktorfit.compiler)
+//    add("kspCommonMainMetadata", libs.ktorfit.compiler)
     add("kspAndroid", libs.ktorfit.compiler)
     add("kspIosSimulatorArm64", libs.ktorfit.compiler)
     add("kspIosX64", libs.ktorfit.compiler)

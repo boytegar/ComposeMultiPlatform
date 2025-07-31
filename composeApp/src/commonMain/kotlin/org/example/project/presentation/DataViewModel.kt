@@ -2,6 +2,8 @@ package org.example.project.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.favorite.data.local.dao.DataDao
+import com.example.favorite.domain.usecase.DataLocalUseCase
 import com.example.shared.utils.Results
 import com.example.shared.utils.handleResult
 import kotlinx.coroutines.delay
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import org.example.project.data.network.DataDto
+import org.example.project.data.network.toDataEntity
 import org.example.project.data.repository.DataRepository
 import org.example.project.domain.usecase.DataUseCase
 import org.koin.android.annotation.KoinViewModel
@@ -26,6 +29,7 @@ class DataViewModel(private val dataUseCase: DataUseCase): ViewModel() {
     }
     fun getData() {
         viewModelScope.launch {
+            delay(1000)
             dataUseCase.getData().handleResult(
                 onLoading = {
                     _state.value = Results.loading()
@@ -42,6 +46,7 @@ class DataViewModel(private val dataUseCase: DataUseCase): ViewModel() {
 
     fun getDataFailed() {
         viewModelScope.launch {
+            delay(1000)
             dataUseCase.getDataFailed().handleResult(
                 onLoading = {
                     _state.value = Results.loading()

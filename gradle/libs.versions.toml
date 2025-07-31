@@ -64,3 +64,4 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ktorfit = {id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+room = {id = "androidx.room", version.ref = "room"}

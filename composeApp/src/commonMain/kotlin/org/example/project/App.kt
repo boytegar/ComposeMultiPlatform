@@ -27,9 +27,7 @@ fun App() {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Navigator(HomeView()){
-                SlideTransition(it)
-            }
+            Navigator(HomeView())
         }
     }
 }

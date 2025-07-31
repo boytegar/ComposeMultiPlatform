@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.kotlinComposeCompiler)
+    alias(libs.plugins.room)
+    alias (libs.plugins.ksp)
 }
 
 kotlin {
@@ -59,7 +63,26 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
-                // Add KMP dependencies here
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
+                implementation(compose.materialIconsExtended)
+                implementation(libs.room.runtime)
+                implementation(libs.sqlite.bundled)
+                // koin
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose.viewmodel)
+                implementation(libs.koin.androidx.compose)
+                implementation(libs.koin.compose)
+                api(libs.koin.annotations)
+                //implements navigator
+                implementation(libs.navigator)
+                implementation(libs.navigator.screen.model)
+                implementation(libs.navigator.transition)
+                implementation(libs.navigator.koin)
+                implementation(projects.shared)
             }
         }
 
@@ -96,4 +119,20 @@ kotlin {
         }
     }
 
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
+    dependencies {
+//        add("kspCommonMainMetadata", libs.koin.ksp.compiler)
+        add("kspAndroid", libs.koin.ksp.compiler)
+        add("kspIosX64", libs.koin.ksp.compiler)
+        add("kspIosArm64", libs.koin.ksp.compiler)
+        add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
+
+//        add("kspCommonMainMetadata", libs.room.compiler)
+        add("kspAndroid", libs.room.compiler)
+        add("kspIosX64", libs.room.compiler)
+        add("kspIosArm64", libs.room.compiler)
+        add("kspIosSimulatorArm64", libs.room.compiler)
+    }
 }
