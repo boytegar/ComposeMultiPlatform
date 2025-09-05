@@ -102,22 +102,22 @@ kotlin {
 }
 
 dependencies {
-//    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
+    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
     add("kspAndroid", libs.koin.ksp.compiler)
     add("kspIosX64", libs.koin.ksp.compiler)
     add("kspIosArm64", libs.koin.ksp.compiler)
     add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
 
-//    add("kspCommonMainMetadata", libs.ktorfit.compiler)
+    add("kspCommonMainMetadata", libs.ktorfit.compiler)
     add("kspAndroid", libs.ktorfit.compiler)
     add("kspIosSimulatorArm64", libs.ktorfit.compiler)
     add("kspIosX64", libs.ktorfit.compiler)
     add("kspIosArm64", libs.ktorfit.compiler)
 }
 
-ksp {
-    arg("KOIN_CONFIG_CHECK","true")
-}
+//ksp {
+//    arg("KOIN_CONFIG_CHECK","true")
+//}
 // KSP Metadata Trigger
 project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
     if(name != "kspCommonMainKotlinMetadata") {
